@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'Myapp/base.html' %}
+{% block body_block %}
+<div class="container">
+    <div class="p-4 m-4">
+        
+        <div class="col-lg-5 mx-auto border rounded card pt-4">
+            <h3 class="alert alert-light border rounded">Create An Acount...</h3>
+        <form method="post" enctype="multipart/form-data" >
+         
+            {% csrf_token %}
+
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+              {{error}}
+            </div>
+            {% elif not error %}
+             <div class="alert alert-success" role="alert">
+              <p>Created succesfully...</p>
+             </div>
+             {% endif %}
+
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">First Name</label>
+                <input type="text" value="{{values.first_name}}" name="firstname" placeholder="Emter Your First Name.." class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                <input type="text" value="{{ values.last_name}}" name="lastname"  placeholder="Emter Your Last Name.." class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Phone</label>
+                <input type="text" value="{{ values.phone}}" name="phone" placeholder="+91 9998887771" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" value="{{ values.email}}" name="email" placeholder="example@gmail.com"  class="form-control" id="exampleInputEmail1" >
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" name="password" placeholder="*********" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="col-lg-5 mx-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+             
+        </form>
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}

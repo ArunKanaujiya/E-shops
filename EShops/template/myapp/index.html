@@ -1,0 +1,55 @@
+<!doctype html>
+{% extends 'Myapp/base.html' %}
+{% block body_block %}
+
+
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-lg-3">
+      <a href="/index" class="list-group-item list-group-item-action">All Products</a>
+
+      {% for category in categories %}
+     <a href="/index/?category={{category.id}}" class="list-group-item list-group-item-action">{{category.name}}</a>
+     
+
+     {% endfor %}
+    </div>
+    {% for product in products %}
+    <table>
+        <tr>
+            <div class="card mx-auto" style="width: 18rem;">
+                <img src="/media/{{product.image}}" class="card-img-top" style="height: 200px; width:287px;"/>  
+                <div class="card-body">
+                  <h5 class="card-title">{{ product.name}}</h5>
+                  <p class="card-text">{{ product.description}}</p>
+                  <P class="card-text">Rs:{{product.price}}</P>
+                   
+                   
+                  <form method="POST" action=" ">
+                    {% csrf_token %}
+                  <input type="text" hidden name="product" value="{{product.id}}">
+                  <input type="submit" class="float-right btn btn-light border btn-sm" value="Add to cart">
+                  <div class="card-footer p-0 row no-gutters">
+                    <input type="submit" value=" - " class="col-2 btn btn-block btn-secondary">
+                    <div class="text-center col">2 in cart</div>
+                    <input type="submit" value=" + " class="col-2 btn btn-block btn-light">
+                  </div>
+                  <!--<a href="/update/{{product.productslug}}" class="btn btn-primary">Update</a><hr>
+                  <a href="/delete/{{ receipes.receipe_slug }}" class="btn btn-danger">Delete</a></td>-->
+                </form>
+                </div>
+              </div>
+          </tr>
+        </table>
+    {% endfor %}
+</div>
+</div>
+  </div>
+  </diV>
+
+    <!--Filter-->
+
+    <!--All Products-->
+    
+    {% endblock %}
